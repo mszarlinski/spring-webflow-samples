@@ -16,6 +16,14 @@
     <script type="text/javascript" src="<c:url value="/resources/dojo/dojo.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/spring/Spring.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/spring/Spring-Dojo.js" />"></script>
+
+	<!-- TODO: nested TILES template -->
+	<!-- AngularJS scripts -->
+	<%--<c:if test="${pageContext.request.angular}">--%>
+		<script type="text/javascript" src="<c:url value="/resources/angularApp/angular.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/angularApp/angular-bootstrap.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/angularApp/app.js" />"></script>
+	<%--</c:if>--%>
 </head>
 <body class="tundra">
 <div id="page" class="container">
