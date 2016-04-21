@@ -1,0 +1,15 @@
+<div ng-controller="ReviewBookingController as vm">
+
+    <h3>{{:: vm.booking.hotel.name }}</h3>
+
+    <form name="reviewBookingForm">
+        <div class="form-group">
+            <label for="checkIn">Check In</label>
+            <input type="text" id="checkIn" name="checkIn" ng-model="vm.booking.checkInDate">
+        </div>
+
+        <button ng-click="vm.confirm()">Confirm</button>
+        <button ng-click="vm.revise()">Revise</button>
+        <button ng-click="vm.cancel()">Cancel</button>
+    </form>
+</div>
