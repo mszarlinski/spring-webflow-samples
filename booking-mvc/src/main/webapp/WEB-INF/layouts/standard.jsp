@@ -16,6 +16,8 @@
     <script type="text/javascript" src="<c:url value="/resources/dojo/dojo.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/spring/Spring.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/spring/Spring-Dojo.js" />"></script>
+
+	<tiles:insertAttribute name="angular-scripts" defaultValue=""/>
 </head>
 <body class="tundra">
 <div id="page" class="container">

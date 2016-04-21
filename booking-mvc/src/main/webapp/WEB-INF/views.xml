@@ -7,6 +7,7 @@
 	
 	<definition name="intro" extends="standardLayout">
 		<put-attribute name="body" value="/WEB-INF/intro.jsp" />
+		<put-attribute name="angular-scripts" value="/WEB-INF/layouts/angular-scripts.jsp"/>
 	</definition>
 	
 	<definition name="login" extends="standardLayout">

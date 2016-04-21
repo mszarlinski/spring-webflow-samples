@@ -1,4 +1,5 @@
 <div>
+	<%@include file="/angularApp/hello.html" %>
 	<h1>Welcome to Spring Travel</h1>
 	<p>
 	 	This sample demonstrates how to use Spring MVC and Spring Web Flow together with JavaServerPages (JSP) and Tiles.
