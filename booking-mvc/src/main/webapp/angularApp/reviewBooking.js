@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('reviewBooking', ['ngResource'])
-    .factory('ReviewBookingService', function (FlowExecutionResolver, $resource, $log) {
+    .factory('ReviewBookingService', function (FlowExecutionService, $resource, $log) {
         var bookingResource = $resource('/rest/bookings', {}, {});
         return {
             loadBooking: function () {
-                var flowId = FlowExecutionResolver.getFlowId();
+                var flowId = FlowExecutionService.getFlowId();
 
                 $log.debug('Loading booking');
                 return bookingResource.get({execution: flowId}).$promise;
@@ -16,7 +16,7 @@ angular.module('reviewBooking', ['ngResource'])
             }
         }
     })
-    .controller('ReviewBookingController', function (ReviewBookingService, $log) {
+    .controller('ReviewBookingController', function (ReviewBookingService, FlowExecutionService, $log) {
         var vm = this;
 
         ReviewBookingService.loadBooking()
@@ -26,6 +26,11 @@ angular.module('reviewBooking', ['ngResource'])
             });
 
         vm.confirm = function () {
-            ReviewBookingService.saveBooking(vm.booking);
+            if (vm.reviewBookingForm.$valid) {
+                ReviewBookingService.saveBooking(vm.booking).then(function() {
+                    $log.debug('Booking has been saved');
+                    FlowExecutionService.publishEvent('confirm');
+                });
+            }
         }
     });

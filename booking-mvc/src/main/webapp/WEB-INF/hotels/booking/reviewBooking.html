@@ -2,16 +2,16 @@
 
     <h3>{{:: vm.booking.hotel.name }}</h3>
 
-    <form name="reviewBookingForm" class="form-horizontal">
+    <form name="vm.reviewBookingForm" class="form-horizontal" ng-submit="vm.confirm()" novalidate>
         <div class="form-group">
             <label for="checkIn" class="col-sm-2 control-label">Check In</label>
             <div class="col-sm-10">
-                <input type="text" id="checkIn" name="checkIn" ng-model="vm.booking.checkInDate" class="form-control">
+                <input type="text" id="checkIn" name="checkIn" ng-model="vm.booking.creditCard" class="form-control" required>
             </div>
         </div>
 
-        <button ng-click="vm.confirm()" class="btn btn-primary">Confirm</button>
-        <button ng-click="vm.revise()" class="btn btn-default">Revise</button>
-        <button ng-click="vm.cancel()" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Confirm</button>
+        <button type="button" ng-click="vm.revise()" class="btn btn-default">Revise</button>
+        <button type="button" ng-click="vm.cancel()" class="btn btn-default">Cancel</button>
     </form>
 </div>
