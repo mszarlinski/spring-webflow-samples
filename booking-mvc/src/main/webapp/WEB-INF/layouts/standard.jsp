@@ -17,16 +17,18 @@
     <script type="text/javascript" src="<c:url value="/resources/spring/Spring.js" />"></script>
     <script type="text/javascript" src="<c:url value="/resources/spring/Spring-Dojo.js" />"></script>
 
-	<!-- TODO: nested TILES template -->
-	<!-- AngularJS scripts -->
-	<%--<c:if test="${pageContext.request.angular}">--%>
+	<c:if test="${angularScreen}">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="<c:url value="/resources/angularApp/libs/bootstrap.css" />" type="text/css"/>
+		<!-- AngularJS scripts -->
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/libs/angular.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/libs/angular-resource.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/angular-bootstrap.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/app.js" />"></script>
 
+		<script type="text/javascript" src="<c:url value="/resources/angularApp/flowExecution.service.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/reviewBooking.js" />"></script>
-	<%--</c:if>--%>
+	</c:if>
 </head>
 <body class="tundra">
 <div id="page" class="container">

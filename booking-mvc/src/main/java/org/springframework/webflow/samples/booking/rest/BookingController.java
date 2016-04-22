@@ -8,7 +8,7 @@ import org.springframework.webflow.samples.booking.BookingService;
 import org.ytoh.webflow.Flow;
 
 /**
- * @author mszarlinski@bravurasolutions.com on 2016-04-21.
+ * @author mszarlinski on 2016-04-21.
  */
 @RestController
 @RequestMapping("/rest/bookings")
