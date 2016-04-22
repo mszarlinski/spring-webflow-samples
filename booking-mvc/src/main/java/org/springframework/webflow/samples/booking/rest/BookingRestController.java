@@ -1,7 +1,5 @@
 package org.springframework.webflow.samples.booking.rest;
 
-import java.math.BigDecimal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.webflow.samples.booking.Booking;
 import org.springframework.webflow.samples.booking.BookingService;
-import org.springframework.webflow.samples.booking.Hotel;
-import org.springframework.webflow.samples.booking.User;
+import org.ytoh.webflow.Flow;
 
 /**
  * @author mszarlinski on 2016-06-07.
@@ -31,19 +28,9 @@ public class BookingRestController {
     }
 
     @RequestMapping
-    public Booking loadBooking() {
+    public Booking loadBooking(@Flow final Booking booking) {
         log.info("Loading booking");
-        // TODO:
-        return emptyBooking();
-    }
-
-    private static Booking emptyBooking() {
-        Hotel hotel = new Hotel();
-        hotel.setPrice(BigDecimal.ZERO);
-
-        User user = new User();
-
-        return new Booking(hotel, user);
+        return booking;
     }
 
     @RequestMapping(method = RequestMethod.POST)
