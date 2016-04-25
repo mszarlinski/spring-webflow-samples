@@ -123,13 +123,13 @@
 				</div>
 				<div>
 					<div class="span-4">
-						<label for="creditCard">Credit Card #:</label>
+						<label for="creditCard.number">Credit Card #:</label>
 					</div>
 					<div class="span-7 last">
-						<p><form:input path="creditCard"/></p>
+						<p><form:input path="creditCard.number"/></p>
 						<script type="text/javascript">
 							Spring.addDecoration(new Spring.ElementDecoration({
-								elementId : "creditCard",
+								elementId : "creditCard.number",
 								widgetType : "dijit.form.ValidationTextBox",
 								widgetAttrs : { required : true, invalidMessage : "A 16-digit credit card number is required.", 
 								regExp : "[0-9]{16}"  }}));
@@ -138,13 +138,13 @@
 				</div>
 				<div>
 					<div class="span-4">
-						<label for="creditCardName">Credit Card Name:</label>
+						<label for="creditCard.name">Credit Card Name:</label>
 					</div>
 					<div class="span-7 last">
-						<p><form:input path="creditCardName" maxlength="40"/></p>
+						<p><form:input path="creditCard.name" maxlength="40"/></p>
 						<script type="text/javascript">
 							Spring.addDecoration(new Spring.ElementDecoration({
-								elementId : "creditCardName",
+								elementId : "creditCard.name",
 								widgetType : "dijit.form.ValidationTextBox",
 								widgetAttrs : { required : true }}));
 						</script>
@@ -156,7 +156,7 @@
 					</div>
 					<div class="span-7 last">
 						<p>
-							<form:select id="creditCardExpiryMonth" path="creditCardExpiryMonth">
+							<form:select id="creditCardExpiryMonth" path="creditCard.expiryMonth">
 								<form:option label="Jan" value="1"/>
 								<form:option label="Feb" value="2"/>
 								<form:option label="Mar" value="3"/>
@@ -170,7 +170,7 @@
 								<form:option label="Nov" value="11"/>
 								<form:option label="Dec" value="12"/>
 							</form:select>
-							<form:select path="creditCardExpiryYear">
+							<form:select path="creditCard.expiryYear">
 								<form:option label="2008" value="1"/>
 								<form:option label="2009" value="2"/>
 								<form:option label="2010" value="3"/>

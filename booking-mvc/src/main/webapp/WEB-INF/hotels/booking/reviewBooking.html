@@ -1,12 +1,142 @@
-<div ng-controller="ReviewBookingController as vm" class="container">
-
-    <h3>{{:: vm.booking.hotel.name }}</h3>
+<div ng-controller="ReviewBookingController as vm" class="container col-xs-10">
+    <h3>{{:: vm.booking.description }}</h3>
 
     <form name="vm.reviewBookingForm" class="form-horizontal" ng-submit="vm.confirm()" novalidate>
-        <div class="form-group">
-            <label for="checkIn" class="col-sm-2 control-label">Check In</label>
-            <div class="col-sm-10">
-                <input type="text" id="checkIn" name="checkIn" ng-model="vm.booking.creditCard" class="form-control" required>
+
+        <!-- BOOKING DETAILS -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Booking details</strong>
+            </div>
+            <div class="panel-body">
+                <!-- NIGHTLY RATE -->
+                <div class="form-group">
+                    <label for="nightlyRate" class="col-sm-4 control-label">Nightly rate</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="nightlyRate" name="nightlyRate" ng-model="vm.booking.hotel.price" class="form-control" disabled>
+                    </div>
+                </div>
+
+                <!-- CHECK IN -->
+                <div class="form-group">
+                    <label for="checkIn" class="col-sm-4 control-label">Check In</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="checkIn" name="checkIn" ng-model="vm.booking.checkinDate" class="form-control" disabled>
+                    </div>
+                </div>
+
+                <!-- CHECK OUT -->
+                <div class="form-group">
+                    <label for="checkIn" class="col-sm-4 control-label">Check out</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="checkOut" name="checkOut" ng-model="vm.booking.checkoutDate" class="form-control" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROOM DETAILS -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Room details</strong>
+            </div>
+            <div class="panel-body">
+                <!-- ROOM PREFERENCE -->
+                <div class="form-group">
+                    <label for="room" class="col-sm-4 control-label">Room preference</label>
+
+                    <div class="col-sm-8">
+                        <select id="room" name="room" ng-model="vm.booking.beds" class="form-control" required
+                                ng-options="pref.value as pref.label for pref in vm.roomPrefs">
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SMOKING PREFERENCE -->
+                <div class="form-group">
+                    <label for="room" class="col-sm-4 control-label">Smoking preference</label>
+
+                    <div class="col-sm-8">
+                        <div class="btn-group" role="group">
+                            <label class="btn btn-default" ng-model="vm.booking.smoking" btn-radio="true">Smoking</label>
+                            <label class="btn btn-default" ng-model="vm.booking.smoking" btn-radio="false">No Smoking</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AMENITIES -->
+                <div class="form-group">
+                    <label for="amenities" class="col-sm-4 control-label">Amenities</label>
+
+                    <div id="amenities" class="col-sm-8">
+                        <input type="checkbox" name="oceanViewChk" ng-change="vm.amenityChanged('OCEAN_VIEW')" ng-model="vm.amenities.OCEAN_VIEW">
+                        Ocean View<br/>
+                        <input type="checkbox" name="lateCheckoutChk" ng-change="vm.amenityChanged('LATE_CHECKOUT')" ng-model="vm.amenities.LATE_CHECKOUT">
+                        Late checkout<br/>
+                        <input type="checkbox" name="minibarChk" ng-change="vm.amenityChanged('MINIBAR')" ng-model="vm.amenities.MINIBAR">Minibar
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAYMENT DETAILS -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Payment details</strong>
+            </div>
+            <div class="panel-body">
+                <div class="form-group has-feedback" ng-class="{'has-error' : vm.reviewBookingForm.ccNumber.$dirty && vm.reviewBookingForm.ccNumber.$error.required}">
+                    <label for="ccNumber" class="col-sm-4 control-label">Credit Card No</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="ccNumber" name="ccNumber" ng-model="vm.booking.creditCard.number" class="form-control" required>
+                        <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+                        <span class="help-block with-errors" ng-show="vm.reviewBookingForm.ccNumber.$dirty && vm.reviewBookingForm.ccNumber.$error.required">This field is
+                            required</span>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{'has-error' : vm.reviewBookingForm.ccName.$dirty && vm.reviewBookingForm.ccName.$error.required}">
+                    <label for="ccName" class="col-sm-4 control-label">Credit Card Name</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="ccName" name="ccName" ng-model="vm.booking.creditCard.name" class="form-control" required>
+                        <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+                        <span class="help-block with-errors" ng-show="vm.reviewBookingForm.ccName.$dirty && vm.reviewBookingForm.ccName.$error.required">This field is required</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ccExpiryMonth" class="col-sm-4 control-label">Expiration Date</label>
+
+                    <div class="col-sm-8">
+                        <select id="ccExpiryMonth" name="ccExpiryMonth" number-opts ng-model="vm.booking.creditCard.expiryMonth" class="form-control width-100"
+                                style="float: left" required>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="ccExpiryYear" name="ccExpiryYear" number-opts ng-model="vm.booking.creditCard.expiryYear" class="form-control width-100" required>
+                            <option value="1">2008</option>
+                            <option value="2">2009</option>
+                            <option value="3">2010</option>
+                            <option value="4">2011</option>
+                            <option value="5">2012</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Basic;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,9 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * A Hotel Booking made by a User.
@@ -35,19 +37,15 @@ public class Booking implements Serializable {
 
     private Hotel hotel;
 
+    @JsonFormat(pattern = "MM-dd-yyyy", timezone = "CET")
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date checkinDate;
 
+    @JsonFormat(pattern = "MM-dd-yyyy", timezone = "CET")
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date checkoutDate;
 
-    private String creditCard;
-
-    private String creditCardName;
-
-    private int creditCardExpiryMonth;
-
-    private int creditCardExpiryYear;
+    private CreditCard creditCard;
 
     private boolean smoking;
 
@@ -56,11 +54,13 @@ public class Booking implements Serializable {
     private Set<Amenity> amenities;
 
     public Booking() {
-	Calendar calendar = Calendar.getInstance();
-	calendar.add(Calendar.DAY_OF_MONTH, 1);
-	setCheckinDate(calendar.getTime());
-	calendar.add(Calendar.DAY_OF_MONTH, 1);
-	setCheckoutDate(calendar.getTime());
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        setCheckinDate(calendar.getTime());
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        setCheckoutDate(calendar.getTime());
+
+        this.creditCard = new CreditCard();
     }
 
     public Booking(Hotel hotel, User user) {
@@ -135,15 +135,6 @@ public class Booking implements Serializable {
 	this.checkoutDate = checkoutDate;
     }
 
-    @NotEmpty
-    public String getCreditCard() {
-	return creditCard;
-    }
-
-    public void setCreditCard(String creditCard) {
-	this.creditCard = creditCard;
-    }
-
     @Transient
     public String getDescription() {
 	DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
@@ -167,29 +158,13 @@ public class Booking implements Serializable {
 	this.beds = beds;
     }
 
-    @NotEmpty
-    public String getCreditCardName() {
-	return creditCardName;
+    @Embedded
+    public CreditCard getCreditCard() {
+        return creditCard;
     }
 
-    public void setCreditCardName(String creditCardName) {
-	this.creditCardName = creditCardName;
-    }
-
-    public int getCreditCardExpiryMonth() {
-	return creditCardExpiryMonth;
-    }
-
-    public void setCreditCardExpiryMonth(int creditCardExpiryMonth) {
-	this.creditCardExpiryMonth = creditCardExpiryMonth;
-    }
-
-    public int getCreditCardExpiryYear() {
-	return creditCardExpiryYear;
-    }
-
-    public void setCreditCardExpiryYear(int creditCardExpiryYear) {
-	this.creditCardExpiryYear = creditCardExpiryYear;
+    public void setCreditCard(final CreditCard creditCard) {
+        this.creditCard = creditCard;
     }
 
     @Transient

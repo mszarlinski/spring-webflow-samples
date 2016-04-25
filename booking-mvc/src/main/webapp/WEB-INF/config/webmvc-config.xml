@@ -56,8 +56,6 @@
 	<bean name="hotels/booking" class="org.springframework.webflow.samples.booking.BookingFlowHandler" />
 
 	<!-- Jackson -->
-	<bean id="objectMapper"
-		  class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"
-		  p:indentOutput="true" p:simpleDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZ" p:failOnEmptyBeans="false">
+	<bean id="objectMapper" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean" p:indentOutput="true">
 	</bean>
 </beans>
