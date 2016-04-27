@@ -12,24 +12,17 @@ import org.ytoh.webflow.Flow;
  */
 @RestController
 @RequestMapping("/rest/bookings")
-public class BookingController {
+public class BookingRestController {
 
     private final BookingService bookingService;
 
     @Autowired
-    public BookingController(final BookingService bookingService) {
+    public BookingRestController(final BookingService bookingService) {
         this.bookingService = bookingService;
     }
 
     @RequestMapping
     public Booking loadBooking(@Flow final Booking booking) {
-        return booking;
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(method = RequestMethod.POST)
-    public Booking saveBooking(@RequestBody final Booking booking) {
-        bookingService.persistBooking(booking);
         return booking;
     }
 }
