@@ -59,6 +59,14 @@ angular.module('reviewBooking', ['ngResource'])
                 });
             }
         };
+        
+        vm.revise = function() {
+            FlowExecutionService.publishEvent('revise');
+        };
+        
+        vm.cancel = function() {
+            FlowExecutionService.publishEvent('cancel');
+        };
 
         vm.amenityChanged = function (amenityName) {
             if (vm.amenities[amenityName]) {
