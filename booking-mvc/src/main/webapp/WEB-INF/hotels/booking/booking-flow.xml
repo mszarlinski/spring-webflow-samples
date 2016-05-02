@@ -41,12 +41,16 @@
 		<on-render>
 			<render fragments="body" />
 		</on-render>
-		<transition on="confirm" to="bookingConfirmed">
-			<evaluate expression="bookingConfirmationHandler.handle(flowRequestContext)" />
-		</transition>
+		<transition on="confirm" to="validateAndSaveBooking"/>
 		<transition on="revise" to="enterBookingDetails" />
 		<transition on="cancel" to="cancel" />
 	</view-state>
+
+	<action-state id="validateAndSaveBooking">
+		<evaluate expression="bookingConfirmationHandler.handle(flowRequestContext)" />
+		<transition on="success" to="bookingConfirmed"/>
+		<transition on="error" to="reviewBooking"/>
+	</action-state>
 	
 	<end-state id="bookingConfirmed">
 		<output name="confirmed" value="'Your booking is confirmed, you can book another hotel by searching again.'"/>

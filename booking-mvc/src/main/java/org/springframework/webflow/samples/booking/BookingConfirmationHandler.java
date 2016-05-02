@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.webflow.action.MultiAction;
+import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author mszarlinski.com on 2016-04-27.
  */
 @Component
-public class BookingConfirmationHandler {
+public class BookingConfirmationHandler extends MultiAction {
 
     private static final String REVIEW_BOOKING_DATA_REQUEST_PARAM = "reviewBookingData";
 
@@ -26,9 +28,14 @@ public class BookingConfirmationHandler {
         this.objectMapper = objectMapper;
     }
 
-    public void handle(final RequestContext context) {
+    public Event handle(final RequestContext context) {
         final Booking booking = deserializeBooking(context);
-        bookingService.persistBooking(booking);
+        if (booking.isValid()) {
+            bookingService.persistBooking(booking);
+            return success();
+        } else {
+            return error();
+        }
     }
 
     private Booking deserializeBooking(final RequestContext context) {

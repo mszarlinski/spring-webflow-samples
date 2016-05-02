@@ -88,5 +88,11 @@ angular.module('reviewBooking', ['ngResource', 'LocalStorageModule'])
                 var idx = vm.booking.amenities.indexOf(amenityName);
                 vm.booking.amenities.splice(idx, 1);
             }
-        }
+        };
+
+        $scope.$watch('vm.reviewBookingForm.$valid', function(isValid) {
+            if (vm.booking) {
+                vm.booking.valid = isValid;
+            }
+        })
     });

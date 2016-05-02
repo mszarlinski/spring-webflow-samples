@@ -55,6 +55,8 @@ public class Booking implements Serializable {
 
     private boolean dirty;
 
+    private boolean valid;
+
     public Booking() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, 1);
@@ -185,6 +187,15 @@ public class Booking implements Serializable {
 
     public void setDirty(final boolean dirty) {
         this.dirty = dirty;
+    }
+
+    @Transient
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(final boolean valid) {
+        this.valid = valid;
     }
 
     private Date today() {

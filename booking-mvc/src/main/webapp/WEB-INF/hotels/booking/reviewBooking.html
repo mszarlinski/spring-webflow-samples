@@ -1,7 +1,7 @@
 <div ng-controller="ReviewBookingController as vm">
     <h3>{{:: vm.booking.description }}</h3>
 
-    <div ng-form="vm.reviewBookingForm" class="form-horizontal" novalidate>
+    <div ng-form="vm.reviewBookingForm" class="form-horizontal">
 
         <!-- BOOKING DETAILS -->
         <div class="panel panel-default">
@@ -88,24 +88,24 @@
                 <strong>Payment details</strong>
             </div>
             <div class="panel-body">
-                <div class="form-group has-feedback" ng-class="{'has-error' : vm.reviewBookingForm.ccNumber.$dirty && vm.reviewBookingForm.ccNumber.$error.required}">
+                <div class="form-group has-feedback" ng-class="{'has-error' : (vm.reviewBookingForm.ccNumber.$dirty || vm.booking.submitted) && vm.reviewBookingForm.ccNumber.$error.required}">
                     <label for="ccNumber" class="col-sm-4 control-label">Credit Card No</label>
 
                     <div class="col-sm-8">
                         <input type="text" id="ccNumber" name="ccNumber" ng-model="vm.booking.creditCard.number" class="form-control" required>
                         <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
-                        <span class="help-block with-errors" ng-show="vm.reviewBookingForm.ccNumber.$dirty && vm.reviewBookingForm.ccNumber.$error.required">This field is
+                        <span class="help-block with-errors" ng-show="(vm.reviewBookingForm.ccNumber.$dirty || vm.booking.submitted) && vm.reviewBookingForm.ccNumber.$error.required">This field is
                             required</span>
                     </div>
                 </div>
 
-                <div class="form-group has-feedback" ng-class="{'has-error' : vm.reviewBookingForm.ccName.$dirty && vm.reviewBookingForm.ccName.$error.required}">
+                <div class="form-group has-feedback" ng-class="{'has-error' : (vm.reviewBookingForm.ccName.$dirty || vm.booking.submitted) && vm.reviewBookingForm.ccName.$error.required}">
                     <label for="ccName" class="col-sm-4 control-label">Credit Card Name</label>
 
                     <div class="col-sm-8">
                         <input type="text" id="ccName" name="ccName" ng-model="vm.booking.creditCard.name" class="form-control" required>
                         <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
-                        <span class="help-block with-errors" ng-show="vm.reviewBookingForm.ccName.$dirty && vm.reviewBookingForm.ccName.$error.required">This field is required</span>
+                        <span class="help-block with-errors" ng-show="(vm.reviewBookingForm.ccName.$dirty || vm.booking.submitted) && vm.reviewBookingForm.ccName.$error.required">This field is required</span>
                     </div>
                 </div>
 

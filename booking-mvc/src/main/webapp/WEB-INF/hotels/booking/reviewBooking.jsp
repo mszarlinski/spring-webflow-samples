@@ -6,9 +6,19 @@
     function doConfirm() {
         var reviewBookingJSON = sessionStorage.getItem('BookingMvc.BookingData');
         var reviewBookingVM = JSON.parse(reviewBookingJSON);
+
+        // mark booking as submitted to enable validation messages
+        reviewBookingVM.booking.submitted = true;
+        sessionStorage.setItem('BookingMvc.BookingData', JSON.stringify(reviewBookingVM));
+
+        // fill hidden input and submit the form
         document.confirm.reviewBookingData.value = JSON.stringify(reviewBookingVM.booking);
         document.confirm.submit();
     }
+
+    document.onload = function () {
+        document.getElementById('confirm').setAttribute('novalidate', ''); // disable browser validation
+    };
 </script>
 
 <div class="container col-xs-10">
