@@ -1,7 +1,7 @@
-<div ng-controller="ReviewBookingController as vm" class="container col-xs-10">
+<div ng-controller="ReviewBookingController as vm">
     <h3>{{:: vm.booking.description }}</h3>
 
-    <form name="vm.reviewBookingForm" class="form-horizontal" ng-submit="vm.confirm()" novalidate>
+    <div ng-form="vm.reviewBookingForm" class="form-horizontal" novalidate>
 
         <!-- BOOKING DETAILS -->
         <div class="panel panel-default">
@@ -139,9 +139,5 @@
                 </div>
             </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Confirm</button>
-        <button type="button" ng-click="vm.revise()" class="btn btn-default">Revise</button>
-        <button type="button" ng-click="vm.cancel()" class="btn btn-default">Cancel</button>
-    </form>
+    </div>
 </div>

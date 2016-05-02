@@ -23,6 +23,7 @@
 		<!-- AngularJS scripts -->
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/libs/angular.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/libs/angular-resource.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/angularApp/libs/angular-local-storage.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/angular-bootstrap.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/app.js" />"></script>
 		<script type="text/javascript" src="<c:url value="/resources/angularApp/btnRadio.directive.js" />"></script>

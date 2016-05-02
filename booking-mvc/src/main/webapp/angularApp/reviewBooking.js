@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('reviewBooking', ['ngResource'])
+angular.module('reviewBooking', ['ngResource', 'LocalStorageModule'])
     .factory('ReviewBookingService', function (FlowExecutionService, $resource, $log) {
         var bookingResource = $resource('/rest/bookings', {}, {});
         return {
@@ -16,7 +16,7 @@ angular.module('reviewBooking', ['ngResource'])
             }
         }
     })
-    .controller('ReviewBookingController', function (ReviewBookingService, FlowExecutionService, $log) {
+    .controller('ReviewBookingController', function ($scope, ReviewBookingService, FlowExecutionService, localStorageService, $log) {
 
         var setupAmenities = function(amenities) {
             if (amenities) {
@@ -38,15 +38,29 @@ angular.module('reviewBooking', ['ngResource'])
         ];
 
         /**
-         * LOAD BOOKING DATA FROM THE SERVER
+         * LOAD BOOKING DATA FROM THE SERVER OR RESTORE FROM SESSION STORAGE
          */
-        ReviewBookingService.loadBooking()
-            .then(function (booking) {
-                $log.debug('Booking loaded: ', booking);
-                vm.booking = booking;
+        //TODO: clear session storage when flow begins
+        var SESSION_STORAGE_KEY = 'ReviewBooking';
+        var storedValueModel = localStorageService.get(SESSION_STORAGE_KEY);
+        if (!storedValueModel) {
+            ReviewBookingService.loadBooking()
+                .then(function (booking) {
+                    $log.debug('Booking loaded: ', booking);
+                    vm.booking = booking;
 
-                setupAmenities(booking.amenities);
-            });
+                    setupAmenities(booking.amenities);
+                    
+                    // rebind booking variable
+                    localStorageService.remove('Booking');
+                    localStorageService.bind($scope, 'vm', vm, 'ReviewBooking');
+                });
+        } else {
+            vm.booking = storedValueModel.booking;
+            localStorageService.bind($scope, 'vm', vm, SESSION_STORAGE_KEY);
+            
+            setupAmenities(vm.booking.amenities);
+        }
 
         /**
          * SEND BOOKING DATA TO THE SERVER

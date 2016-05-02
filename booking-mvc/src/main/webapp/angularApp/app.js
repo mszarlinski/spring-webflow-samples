@@ -1,6 +1,12 @@
 'use strict';
 
 angular.module('app', ['reviewBooking'])
+    .config(function (localStorageServiceProvider) {
+        localStorageServiceProvider
+            .setPrefix('BookingMvc')
+            .setStorageType('sessionStorage')
+            .setNotify(true, true);
+    })
     .controller('HelloController', function ($scope) {
         $scope.message = 'Angular ready!';
     })
