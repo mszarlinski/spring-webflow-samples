@@ -2,6 +2,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<script type="text/javascript">
+	<c:if test="${not booking.dirty}">
+	(function clearSessionStorage() {
+		sessionStorage.removeItem('BookingMvc.BookingData');
+	})();
+	</c:if>
+</script>
+
 <div id="bookingForm">
 	<div class="span-5">
 		<h3>${booking.hotel.name}</h3>

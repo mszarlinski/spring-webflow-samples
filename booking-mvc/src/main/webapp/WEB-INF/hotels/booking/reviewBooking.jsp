@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
     function doConfirm() {
-        var reviewBookingJSON = sessionStorage.getItem('BookingMvc.ReviewBooking');
+        var reviewBookingJSON = sessionStorage.getItem('BookingMvc.BookingData');
         var reviewBookingVM = JSON.parse(reviewBookingJSON);
         document.confirm.reviewBookingData.value = JSON.stringify(reviewBookingVM.booking);
         document.confirm.submit();

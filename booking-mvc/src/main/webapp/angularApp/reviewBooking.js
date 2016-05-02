@@ -40,8 +40,7 @@ angular.module('reviewBooking', ['ngResource', 'LocalStorageModule'])
         /**
          * LOAD BOOKING DATA FROM THE SERVER OR RESTORE FROM SESSION STORAGE
          */
-        //TODO: clear session storage when flow begins
-        var SESSION_STORAGE_KEY = 'ReviewBooking';
+        var SESSION_STORAGE_KEY = 'BookingData';
         var storedValueModel = localStorageService.get(SESSION_STORAGE_KEY);
         if (!storedValueModel) {
             ReviewBookingService.loadBooking()
@@ -53,7 +52,7 @@ angular.module('reviewBooking', ['ngResource', 'LocalStorageModule'])
                     
                     // rebind booking variable
                     localStorageService.remove('Booking');
-                    localStorageService.bind($scope, 'vm', vm, 'ReviewBooking');
+                    localStorageService.bind($scope, 'vm', vm, SESSION_STORAGE_KEY);
                 });
         } else {
             vm.booking = storedValueModel.booking;
