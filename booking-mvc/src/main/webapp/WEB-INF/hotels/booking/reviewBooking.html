@@ -1,6 +1,8 @@
 <div ng-controller="ReviewBookingController as vm" class="container col-xs-10">
     <h3>{{:: vm.booking.description }}</h3>
 
+    <span class="label label-{{ vm.messageType }}" ng-if="vm.message">{{ vm.message }}</span>
+
     <form name="vm.reviewBookingForm" class="form-horizontal" ng-submit="vm.confirm()" novalidate>
 
         <!-- BOOKING DETAILS -->

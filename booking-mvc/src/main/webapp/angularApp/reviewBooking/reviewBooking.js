@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('reviewBooking', []);
+angular.module('reviewBooking', ['ngResource']);

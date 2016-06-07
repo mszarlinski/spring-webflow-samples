@@ -22,6 +22,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * A Hotel Booking made by a User.
  */
@@ -35,9 +37,11 @@ public class Booking implements Serializable {
 
     private Hotel hotel;
 
+    @JsonFormat(pattern = "MM-dd-yyyy", timezone = "CET")
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date checkinDate;
 
+    @JsonFormat(pattern = "MM-dd-yyyy", timezone = "CET")
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date checkoutDate;
 

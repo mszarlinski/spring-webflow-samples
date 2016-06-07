@@ -1,14 +1,26 @@
 'use strict';
 
 angular.module('reviewBooking')
-    .controller('ReviewBookingController', function () {
+    .controller('ReviewBookingController', function (ReviewBookingService, $log) {
         var vm = this;
 
-        vm.booking = {
-            description: 'Sample booking',
-            creditCard: {
-                number: '0000111122223333'
-            }
+        ReviewBookingService.loadBooking()
+            .then(function (booking) {
+                $log.debug('Booking loaded: ', booking);
+                vm.booking = booking;
+                vm.message = null;
+            });
+
+        vm.confirm = function () {
+            ReviewBookingService.saveBooking(vm.booking)
+                .then(function () {
+                    vm.message = 'Booking has been saved';
+                    vm.messageType = 'success';
+                })
+                .catch(function (error) {
+                    vm.message = 'Failed to save booking due to error: ' + error.statusText;
+                    vm.messageType = 'danger';
+                })
         }
     });
     
