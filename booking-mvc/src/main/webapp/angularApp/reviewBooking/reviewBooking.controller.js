@@ -12,15 +12,20 @@ angular.module('reviewBooking')
             });
 
         vm.confirm = function () {
-            ReviewBookingService.saveBooking(vm.booking)
-                .then(function () {
-                    vm.message = 'Booking has been saved';
-                    vm.messageType = 'success';
-                })
-                .catch(function (error) {
-                    vm.message = 'Failed to save booking due to error: ' + error.statusText;
-                    vm.messageType = 'danger';
-                })
-        }
+            if (vm.reviewBookingForm.$valid) {
+                ReviewBookingService.saveBooking(vm.booking)
+                    .then(function () {
+                        vm.message = 'Booking has been saved';
+                        vm.messageType = 'success';
+                    })
+                    .catch(function (error) {
+                        vm.message = 'Failed to save booking due to error: ' + error.statusText;
+                        vm.messageType = 'danger';
+                    })
+            } else {
+                vm.message = 'Form is invalid. Please fill all required fields';
+                vm.messageType = 'danger';
+            }
+        };
     });
     
