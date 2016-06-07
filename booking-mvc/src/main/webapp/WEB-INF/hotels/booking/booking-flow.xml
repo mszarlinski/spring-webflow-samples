@@ -37,8 +37,8 @@
 			<render fragments="body" />
 		</on-render>
 		<transition on="CONFIRMED" to="bookingConfirmed"/>
-		<transition on="revise" to="enterBookingDetails" />
-		<transition on="cancel" to="cancel" />
+		<transition on="REVISED" to="enterBookingDetails" />
+		<transition on="CANCELLED" to="cancel" />
 	</view-state>
 	
 	<end-state id="bookingConfirmed">

@@ -24,5 +24,13 @@ angular.module('reviewBooking')
                 vm.message = 'Form is invalid. Please fill all required fields';
             }
         };
+
+        vm.revise = function () {
+            FlowManager.fireEvent('REVISED');
+        };
+
+        vm.cancel = function () {
+            FlowManager.fireEvent('CANCELLED');
+        }
     });
     
