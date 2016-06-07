@@ -63,7 +63,7 @@ public class BookingFlowExecutionTests extends AbstractXmlFlowExecutionTests {
 	setCurrentState("reviewBooking");
 	getFlowScope().put("booking", createTestBooking());
 	MockExternalContext context = new MockExternalContext();
-	context.setEventId("confirm");
+	context.setEventId("CONFIRMED");
 	resumeFlow(context);
 	assertFlowExecutionEnded();
 	assertFlowExecutionOutcomeEquals("bookingConfirmed");
