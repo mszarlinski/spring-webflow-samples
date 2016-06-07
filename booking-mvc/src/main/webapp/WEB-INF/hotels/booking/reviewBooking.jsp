@@ -45,7 +45,7 @@
 			<div>
 				<div class="span-3">Credit Card #:</div>
 				<div class="span-8 last">
-					<p>${booking.creditCard}</p>
+					<p>${booking.creditCard.number}</p>
 				</div>
 			</div>
 			<div>

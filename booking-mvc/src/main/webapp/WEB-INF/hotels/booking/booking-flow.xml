@@ -19,10 +19,10 @@
 			<binding property="checkoutDate" />
 			<binding property="beds" />
 			<binding property="smoking" />
-			<binding property="creditCard" />
-			<binding property="creditCardName" />
-			<binding property="creditCardExpiryMonth" />
-			<binding property="creditCardExpiryYear" />
+			<binding property="creditCard.number" />
+			<binding property="creditCard.name" />
+			<binding property="creditCard.expiryMonth" />
+			<binding property="creditCard.expiryYear" />
 			<binding property="amenities" />
 		</binder>
 		<on-render>

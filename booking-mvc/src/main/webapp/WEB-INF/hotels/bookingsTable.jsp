@@ -22,6 +22,7 @@
 				<th>City, State</th>
 				<th>Check in Date</th>
 				<th>Check out Date</th>
+				<th>Credit card</th>
 				<th>Confirmation Number</th>
 				<th>Action</th>
 			</tr>
@@ -34,6 +35,7 @@
 				<td>${booking.hotel.city}, ${booking.hotel.state}</td>
 				<td>${booking.checkinDate}</td>
 				<td>${booking.checkoutDate}</td>
+				<td>${booking.creditCard.number}</td>
 				<td>${booking.id}</td>
 				<td>
 					<spring:url var="bookingUrl" value="/bookings/{id}">
