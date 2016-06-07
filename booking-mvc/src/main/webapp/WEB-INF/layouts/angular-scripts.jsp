@@ -8,6 +8,7 @@
 <script type="text/javascript" src="<c:url value="/resources/angularApp/angular-boot.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/angularApp/app.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/angularApp/flow.manager.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/angularApp/numberOpts.directive.js" />"></script>
 
 <script type="text/javascript" src="<c:url value="/resources/angularApp/reviewBooking/reviewBooking.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/angularApp/reviewBooking/reviewBooking.controller.js" />"></script>
