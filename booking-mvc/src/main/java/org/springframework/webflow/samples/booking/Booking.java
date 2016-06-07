@@ -57,6 +57,8 @@ public class Booking implements Serializable {
 
     private Set<Amenity> amenities;
 
+    private boolean dirty;
+
     public Booking() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, 1);
@@ -200,6 +202,15 @@ public class Booking implements Serializable {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         return calendar.getTime();
+    }
+
+    @Transient
+    public boolean isDirty() {
+        return dirty;
+    }
+
+    public void setDirty(final boolean dirty) {
+        this.dirty = dirty;
     }
 
     @Override

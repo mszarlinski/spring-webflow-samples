@@ -28,7 +28,9 @@
 		<on-render>
 			<render fragments="body" />
 		</on-render>
-		<transition on="proceed" to="reviewBooking" />
+		<transition on="proceed" to="reviewBooking">
+			<set name="booking.dirty" value="true"/>
+		</transition>
 		<transition on="cancel" to="cancel" bind="false" />
 	</view-state>
 	
