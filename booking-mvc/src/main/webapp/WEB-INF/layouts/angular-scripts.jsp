@@ -5,6 +5,8 @@
 <!-- AngularJS scripts -->
 <script type="text/javascript" src="<c:url value="/resources/angularApp/lib/angular.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/angularApp/lib/angular-resource.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/angularApp/lib/angular-local-storage.js" />"></script>
+
 <script type="text/javascript" src="<c:url value="/resources/angularApp/angular-boot.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/angularApp/app.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/angularApp/flow.manager.js" />"></script>

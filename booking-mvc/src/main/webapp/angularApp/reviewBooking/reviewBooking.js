@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('reviewBooking', ['ngResource']);
+angular.module('reviewBooking', ['ngResource', 'LocalStorageModule']);

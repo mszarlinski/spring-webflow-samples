@@ -1,15 +1,33 @@
 'use strict';
 
 angular.module('reviewBooking')
-    .controller('ReviewBookingController', function (ReviewBookingService, FlowManager, $log) {
+    .controller('ReviewBookingController', function (ReviewBookingService, FlowManager, localStorageService, $scope, $log) {
         var vm = this;
 
-        ReviewBookingService.loadBooking()
-            .then(function (booking) {
-                $log.debug('Booking loaded: ', booking);
+        var initialize = function () {
+            var SESSION_STORAGE_KEY = 'BookingData';
+
+            var setAndBind = function (booking) {
                 vm.booking = booking;
-                vm.message = null;
-            });
+                localStorageService.bind($scope, 'vm', vm, SESSION_STORAGE_KEY);
+            };
+            
+            var storedValueModel = localStorageService.get(SESSION_STORAGE_KEY);
+            if (!storedValueModel) {
+                ReviewBookingService.loadBooking()
+                    .then(function (booking) {
+                        $log.debug('Booking loaded: ', booking);
+                        setAndBind(booking);
+                    });
+            } else {
+                //FIXME: data change done in previous screen is lost
+                setAndBind(storedValueModel.booking);
+            }
+
+            vm.message = null;
+        };
+
+        initialize();
 
         vm.confirm = function () {
             if (vm.reviewBookingForm.$valid) {
