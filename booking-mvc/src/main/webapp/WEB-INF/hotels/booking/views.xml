@@ -11,6 +11,7 @@
 	
 	<definition name="reviewBooking" extends="standardLayout">
 		<put-attribute name="body" value="/WEB-INF/hotels/booking/reviewBooking.jsp" />
+		<put-attribute name="angular-scripts" value="/WEB-INF/layouts/angular-scripts.jsp"/>
 	</definition>
 	
 </tiles-definitions>

@@ -122,65 +122,6 @@
 					</div>
 				</div>
 				<div>
-					<div class="span-4">
-						<label for="creditCard.number">Credit Card #:</label>
-					</div>
-					<div class="span-7 last">
-						<p><form:input path="creditCard.number"/></p>
-						<script type="text/javascript">
-							Spring.addDecoration(new Spring.ElementDecoration({
-								elementId : "creditCard.number",
-								widgetType : "dijit.form.ValidationTextBox",
-								widgetAttrs : { required : true, invalidMessage : "A 16-digit credit card number is required.",
-									regExp : "[0-9]{16}"  }}));
-						</script>
-					</div>
-				</div>
-				<div>
-					<div class="span-4">
-						<label for="creditCard.name">Credit Card Name:</label>
-					</div>
-					<div class="span-7 last">
-						<p><form:input path="creditCard.name" maxlength="40"/></p>
-						<script type="text/javascript">
-							Spring.addDecoration(new Spring.ElementDecoration({
-								elementId : "creditCard.name",
-								widgetType : "dijit.form.ValidationTextBox",
-								widgetAttrs : { required : true }}));
-						</script>
-					</div>
-				</div>
-				<div>
-					<div class="span-4">
-						<label for="creditCardExpiryMonth">Expiration Date:</label>
-					</div>
-					<div class="span-7 last">
-						<p>
-							<form:select id="creditCardExpiryMonth" path="creditCard.expiryMonth">
-								<form:option label="Jan" value="1"/>
-								<form:option label="Feb" value="2"/>
-								<form:option label="Mar" value="3"/>
-								<form:option label="Apr" value="4"/>
-								<form:option label="May" value="5"/>
-								<form:option label="Jun" value="6"/>
-								<form:option label="Jul" value="7"/>
-								<form:option label="Aug" value="8"/>
-								<form:option label="Sep" value="9"/>
-								<form:option label="Oct" value="10"/>
-								<form:option label="Nov" value="11"/>
-								<form:option label="Dec" value="12"/>
-							</form:select>
-							<form:select path="creditCard.expiryYear">
-								<form:option label="2008" value="1"/>
-								<form:option label="2009" value="2"/>
-								<form:option label="2010" value="3"/>
-								<form:option label="2011" value="4"/>
-								<form:option label="2012" value="5"/>
-							</form:select>
-						</p>
-					</div>
-				</div>
-				<div>
 					<p>
 					<button type="submit" id="proceed" name="_eventId_proceed">Proceed</button>
 					<button type="submit" name="_eventId_cancel" >Cancel</button>
