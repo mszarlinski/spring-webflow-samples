@@ -4,11 +4,19 @@ angular.module('reviewBooking')
     .controller('ReviewBookingController', function (ReviewBookingService, FlowManager, localStorageService, $scope, $log) {
         var vm = this;
 
+        var setupIsValidWatcher = function (booking) {
+            $scope.$watch('vm.reviewBookingForm.$valid', function (isValid) {
+                booking.valid = isValid;
+            })
+        };
+        
         var initialize = function () {
             var SESSION_STORAGE_KEY = 'BookingData';
 
             var setAndBind = function (booking) {
                 vm.booking = booking;
+                setupIsValidWatcher(vm.booking);
+                localStorageService.remove(SESSION_STORAGE_KEY);
                 localStorageService.bind($scope, 'vm', vm, SESSION_STORAGE_KEY);
             };
             

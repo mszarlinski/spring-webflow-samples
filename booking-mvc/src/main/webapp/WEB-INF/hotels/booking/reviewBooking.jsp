@@ -18,6 +18,10 @@
 </script>
 
 <div class="container col-xs-10">
+
+    <c:if test="${not empty errorMessage}">
+        <span class="alert alert-danger">${errorMessage}</span>
+    </c:if>
     <form:form id="confirmationForm" name="confirmationForm" modelAttribute="booking" action="${flowExecutionUrl}">
 
         <%@include file="reviewBooking.html" %>
