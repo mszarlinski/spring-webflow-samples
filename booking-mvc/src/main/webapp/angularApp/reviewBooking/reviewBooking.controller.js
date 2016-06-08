@@ -28,27 +28,5 @@ angular.module('reviewBooking')
         };
 
         initialize();
-
-        vm.confirm = function () {
-            if (vm.reviewBookingForm.$valid) {
-                ReviewBookingService.saveBooking(vm.booking)
-                    .then(function () {
-                        FlowManager.fireEvent('CONFIRMED');
-                    })
-                    .catch(function (error) {
-                        vm.message = 'Failed to save booking due to error: ' + (error.data ? error.data.message : error.statusText);
-                    })
-            } else {
-                vm.message = 'Form is invalid. Please fill all required fields';
-            }
-        };
-
-        vm.revise = function () {
-            FlowManager.fireEvent('REVISED');
-        };
-
-        vm.cancel = function () {
-            FlowManager.fireEvent('CANCELLED');
-        }
     });
     

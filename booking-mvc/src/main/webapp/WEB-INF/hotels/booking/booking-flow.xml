@@ -38,7 +38,9 @@
 		<on-render>
 			<render fragments="body" />
 		</on-render>
-		<transition on="CONFIRMED" to="bookingConfirmed"/>
+		<transition on="CONFIRMED" to="bookingConfirmed">
+			<evaluate expression="bookingConfirmationHandler.confirm(flowRequestContext)" />
+		</transition>
 		<transition on="REVISED" to="enterBookingDetails" />
 		<transition on="CANCELLED" to="cancel" />
 	</view-state>
