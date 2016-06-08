@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
@@ -45,6 +46,7 @@ public class Booking implements Serializable {
     @DateTimeFormat(pattern = "MM-dd-yyyy")
     private Date checkoutDate;
 
+    @Valid
     private CreditCard creditCard;
 
     private int creditCardExpiryMonth;

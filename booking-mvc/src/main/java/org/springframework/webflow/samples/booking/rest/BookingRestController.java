@@ -1,5 +1,7 @@
 package org.springframework.webflow.samples.booking.rest;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class BookingRestController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void saveBooking(@RequestBody final Booking booking) {
+    public void saveBooking(@RequestBody @Valid final Booking booking) {
         log.info("Saving booking: " + booking.getDescription());
         bookingService.persistBooking(booking);
     }

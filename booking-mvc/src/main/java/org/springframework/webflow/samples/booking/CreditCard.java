@@ -3,8 +3,7 @@ package org.springframework.webflow.samples.booking;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 /**
  * @author mszarlinski on 2016-06-07.
@@ -12,6 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Embeddable
 public class CreditCard implements Serializable {
 
+    @Pattern(regexp = "\\d{16}", message = "Credit card number must contain exactly 16 digits")
     private String number;
 
     private String name;
@@ -28,7 +28,6 @@ public class CreditCard implements Serializable {
         this.number = number;
     }
 
-    @NotEmpty
     public String getName() {
         return name;
     }

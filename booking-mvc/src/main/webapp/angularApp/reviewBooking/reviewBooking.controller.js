@@ -36,7 +36,7 @@ angular.module('reviewBooking')
                         FlowManager.fireEvent('CONFIRMED');
                     })
                     .catch(function (error) {
-                        vm.message = 'Failed to save booking due to error: ' + error.statusText;
+                        vm.message = 'Failed to save booking due to error: ' + (error.data ? error.data.message : error.statusText);
                     })
             } else {
                 vm.message = 'Form is invalid. Please fill all required fields';
